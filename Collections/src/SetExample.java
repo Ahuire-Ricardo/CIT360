@@ -11,7 +11,7 @@ public class SetExample {
         Student st5=new Student("Daniel","De Melo","Brazil", "005");
         Student st6=new Student("Arthur","Streeter","USA", "006");
         Student st7=new Student("Tyler","Tucker","USA", "007");
-        //This line not printed because in the class student override the method hashcode and equal
+        //This line not printed because in the class student override the methods hashcode and equal
         Student st8=new Student("Ricardo","Ahuire","Perú", "001");
 
         Set<Student> classmates = new HashSet<Student>();
@@ -28,8 +28,16 @@ public class SetExample {
         System.out.println("The members in my group are:");
 
         for (Student classmate : classmates) {
-            System.out.println(classmate.getName() + " " + classmate.getLast_name() + " of " + classmate.getCountry());
+           System.out.println(classmate.getName() + " " + classmate.getLast_name() + " of " + classmate.getCountry());
         }
+        
+     // Clearing all the elements
+        classmates.clear();
+
+        System.out.println("\nclassmates is Empty: " + classmates.isEmpty() +"\n");
+
+        // Checking the number of elements
+        System.out.println("classmates has: " + classmates.size() + " Elements\n");
 
 	}
 

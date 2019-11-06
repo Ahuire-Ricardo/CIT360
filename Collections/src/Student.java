@@ -1,17 +1,22 @@
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparator<Student>{
 	
 	private String name;
     private String last_name;
     private String country;
     private String code_student;
     
-	public Student(String name, String last_name, String country, String code_student) {
+    public Student(String name, String last_name, String country, String code_student) {
 		this.name = name;
 		this.last_name = last_name;
 		this.country = country;
 		this.code_student = code_student;
+	}
+
+	public Student() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {
@@ -60,8 +65,18 @@ public class Student {
 		Student other = (Student) obj;
 		return Objects.equals(code_student, other.code_student);
 	}
-	
-	
+
+	@Override
+	public int compare(Student arg0, Student arg1) {
+		// TODO Auto-generated method stub
+		String descriptionA=arg0.getCode_student();
+		
+		String descriptionB=arg1.getCode_student();
+		
+		return descriptionA.compareTo(descriptionB);
+	}
+
+		
     
     
 
