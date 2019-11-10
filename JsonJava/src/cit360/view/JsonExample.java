@@ -1,5 +1,6 @@
 package cit360.view;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -15,24 +16,32 @@ public class JsonExample {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		CreateJson();
 
 	}
 	
-	private void CreateJson() throws Exception {
+	private static void CreateJson() {
 		try {
 			
 			JSONObject json = new JSONObject();
 			
 			InventoryController invCont = new InventoryController();
-			Inventory inv = new Inventory();
 			List<Inventory> list = invCont.TotalProduct();
 			
 			JSONArray jArray = new JSONArray();
 			
 			for (int i=0; i<=list.size()-1; i++){
 				json = WriteJson(list,i);
-		        jArray.
+				jArray.put(json);
+				
 		    } 
+			
+			FileWriter file = new FileWriter("\\CIT360\\JsonJava\\inventory.json");
+			System.out.println("\n" + jArray.toString());
+	        file.write(jArray.toString());
+	        file.flush();
+	        file.close();
+	        System.out.println("\nThe Json file was generate in the root:CIT360\\JsonJava with the name: inventory.json");
 			
 			
 		} catch (UnsupportedEncodingException ex1) {
@@ -44,7 +53,7 @@ public class JsonExample {
         }
 	}
 	
-	private JSONObject WriteJson(List<Inventory> List,int i) {
+	private static JSONObject WriteJson(List<Inventory> List,int i) {
         JSONObject innerObj = new JSONObject(); 
        
          
