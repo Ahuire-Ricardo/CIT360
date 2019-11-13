@@ -175,6 +175,8 @@ class BounceFrame extends JFrame{
 			
 		});
 		
+		
+				
 		add(frameButtons, BorderLayout.SOUTH);
 	}
 	
@@ -207,7 +209,11 @@ class BounceFrame extends JFrame{
 			t.start();
 	}
 	
+	
+	
 	private SheetBall sheet;
+	
+	
 	
 	
 }
