@@ -130,7 +130,7 @@ public class AppTest {
 	
 	@Test
 	public void whenAssertingSameObject_thenSuccessfull() {
-		System.out.println("whenAssertingSameObject_thenSuccessfull()");
+		System.out.println("whenAssertingSameObject_thenSuccessfull!()");
 	    String language = "Java";
 	    Optional<String> optional = Optional.of(language);
 	    assertSame(language, optional.get());
