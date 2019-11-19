@@ -3,6 +3,7 @@ package academy.JunitJava;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,6 +62,14 @@ public class AppTest {
 	}
 	
 	@Test
+    public void myTestArray(){
+	   System.out.println("TestArray()");
+       String[] expectedOutput = {"apple", "mango", "grape"};
+       String[] methodOutput = {"apple", "mango", "grape"};
+       assertArrayEquals(expectedOutput, methodOutput);
+    }
+	
+	@Test
 	public void testSum() {
 		System.out.println("sum()");
 		int res = calc.sum(a, b);
@@ -104,6 +113,28 @@ public class AppTest {
 	public void testDivZero() {
 		System.out.println("testDivZero()");
 		calc.div(a, 0);
+		assertNotNull(calc.div(a, 0));
 	}
+	
+	@Test
+    public void evenNumberTest(){
+		System.out.println("evenNumber()");
+		assertFalse(calc.isEvenNumber(3));
+    }
+	
+	@Test
+	public void compareNumber() {
+		System.out.println("compareNumber()");
+		assertTrue(4<5);
+	}
+	
+	@Test
+	public void whenAssertingSameObject_thenSuccessfull() {
+		System.out.println("whenAssertingSameObject_thenSuccessfull()");
+	    String language = "Java";
+	    Optional<String> optional = Optional.of(language);
+	    assertSame(language, optional.get());
+	}
+	
    
 }
