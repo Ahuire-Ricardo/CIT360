@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 10, 2019 4:44:28 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.warehouseproject.entity.Clients" table="clients" catalog="acme" optimistic-lock="version">
+        <id name="clientId" type="java.lang.Integer">
+            <column name="clientId" />
+            <generator class="identity" />
+        </id>
+        <property name="clientFirstname" type="string">
+            <column name="clientFirstname" length="15" not-null="true" />
+        </property>
+        <property name="clientLastname" type="string">
+            <column name="clientLastname" length="25" not-null="true" />
+        </property>
+        <property name="clientEmail" type="string">
+            <column name="clientEmail" length="40" not-null="true" />
+        </property>
+        <property name="clientPassword" type="string">
+            <column name="clientPassword" not-null="true" />
+        </property>
+        <property name="clientLevel" type="string">
+            <column name="clientLevel" length="2" not-null="true" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="65535" not-null="true" />
+        </property>
+        <set name="reviewses" table="reviews" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="clientId" not-null="true" />
+            </key>
+            <one-to-many class="com.warehouseproject.entity.Reviews" />
+        </set>
+    </class>
+</hibernate-mapping>

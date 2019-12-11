@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 10, 2019 4:44:28 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.warehouseproject.entity.Reviews" table="reviews" catalog="acme" optimistic-lock="version">
+        <id name="reviewId" type="java.lang.Integer">
+            <column name="reviewId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clients" class="com.warehouseproject.entity.Clients" fetch="select">
+            <column name="clientId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="inventory" class="com.warehouseproject.entity.Inventory" fetch="select">
+            <column name="invId" not-null="true" />
+        </many-to-one>
+        <property name="reviewText" type="string">
+            <column name="reviewText" length="65535" not-null="true" />
+        </property>
+        <property name="reviewDate" type="timestamp">
+            <column name="reviewDate" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

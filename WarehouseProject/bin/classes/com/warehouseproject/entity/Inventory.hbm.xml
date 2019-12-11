@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 10, 2019 4:44:28 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.warehouseproject.entity.Inventory" table="inventory" catalog="acme" optimistic-lock="version">
+        <id name="invId" type="java.lang.Integer">
+            <column name="invId" />
+            <generator class="identity" />
+        </id>
+        <property name="invName" type="string">
+            <column name="invName" length="50" not-null="true" />
+        </property>
+        <property name="invDescription" type="string">
+            <column name="invDescription" length="65535" not-null="true" />
+        </property>
+        <property name="invImage" type="string">
+            <column name="invImage" length="50" not-null="true" />
+        </property>
+        <property name="invThumbnail" type="string">
+            <column name="invThumbnail" length="50" not-null="true" />
+        </property>
+        <property name="invPrice" type="big_decimal">
+            <column name="invPrice" precision="10" not-null="true" />
+        </property>
+        <property name="invStock" type="short">
+            <column name="invStock" not-null="true" />
+        </property>
+        <property name="invSize" type="short">
+            <column name="invSize" not-null="true" />
+        </property>
+        <property name="invWeight" type="short">
+            <column name="invWeight" not-null="true" />
+        </property>
+        <property name="invLocation" type="string">
+            <column name="invLocation" length="35" not-null="true" />
+        </property>
+        <property name="categoryId" type="int">
+            <column name="categoryId" not-null="true" />
+        </property>
+        <property name="invVendor" type="string">
+            <column name="invVendor" length="20" not-null="true" />
+        </property>
+        <property name="invStyle" type="string">
+            <column name="invStyle" length="20" not-null="true" />
+        </property>
+        <set name="reviewses" table="reviews" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="invId" not-null="true" />
+            </key>
+            <one-to-many class="com.warehouseproject.entity.Reviews" />
+        </set>
+        <set name="imageses" table="images" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="invId" not-null="true" />
+            </key>
+            <one-to-many class="com.warehouseproject.entity.Images" />
+        </set>
+    </class>
+</hibernate-mapping>
