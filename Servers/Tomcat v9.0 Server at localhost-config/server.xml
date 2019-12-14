@@ -151,7 +151,8 @@
 
       <!--<Context docBase="ModelViewController" path="/ModelViewController" reloadable="true" source="org.eclipse.jst.jee.server:ModelViewController"/>-->
       <!--<Context docBase="ServletsJava" path="/ModelViewController" reloadable="true" source="org.eclipse.jst.jee.server:ServletsJava"/>-->
-       <Context docBase="WarehouseProject" path="/ModelViewController" reloadable="true" source="org.eclipse.jst.jee.WarehouseProject"/></Host>
+      <!--<Context docBase="FinalWarehouseProject" path="/ModelViewController" reloadable="true" source="org.eclipse.jst.jee.FinalWarehouseProject"/>-->
+       <Context docBase="FinalWarehouseProject" path="/ModelViewController" reloadable="true" source="org.eclipse.jst.jee.server:FinalWarehouseProject"/></Host>
       
     </Engine>
   </Service>
