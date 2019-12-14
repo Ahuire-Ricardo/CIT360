@@ -1,7 +1,11 @@
 package com.finalwarehouseproject.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 
 import javax.annotation.Resource;
@@ -17,6 +21,7 @@ import javax.sql.DataSource;
 import com.finalwarehouseproject.dao.InventService;
 import com.finalwarehouseproject.dao.InventoryDAO;
 import com.finalwarehouseproject.entity.Inventory;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class ControlInventory
@@ -47,51 +52,86 @@ public class ControlInventory extends HttpServlet {
 		}
 	}
 
-
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		response.setContentType("application/json;charset=UTF-8");
-		
-		ServletOutputStream out = response.getOutputStream();
+		String product = request.getParameter("Select1");
 		
 		try {
-			List<Inventory> inventory =  new InventService().getInventory();
+			List<Inventory> inventory =  new InventService().getInventory(product);
 			
-			JsonConverter converter = new JsonConverter();
-			String output = converter.convertToJson(inventory);
-
-	        out.print(output);
+			Gson gson=new Gson();
+			PrintWriter pw=response.getWriter();
+			pw.println( gson.toJson(inventory));
+			pw.close();
+			
+			connection();
+			
+	      
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		/*List<Inventory> inventory; 
+				
+	}
+	
+	private void connection() {
+		String output = getUrlContents("http://localhost:8080/ModelViewController/views");
+		//String output = getUrlContents("https://apis.google.com/js/client.js?onload=onLoad");
+		
+		//This is the actual output. It will print out the html file for the url provided above.
+		System.out.println(output);
+	}
+	
+    private static String getUrlContents(String theUrl) {
+		
+		// Try/catch statement to catch an exceptions being thrown. 
+		StringBuilder content = new StringBuilder();
 		
 		try {
 			
-			inventory=inventoryDao.List();
+			//URL object.
+			URL url = new URL(theUrl);
 			
-			request.setAttribute("INVENTORYLIST",inventory);
+			//URLConnection object
+			URLConnection urlConnection = url.openConnection();
 			
-			RequestDispatcher myDispatcher=request.getRequestDispatcher("InventoryList.jsp");
+			System.out.println("\nSending 'GET' request to URL : " + theUrl + "\n");
+							
+			//BufferedReader object.
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			
-			myDispatcher.forward(request, response);
+			String line;
+			
+							
+			// Read from the urlconnection through bufferedreader.
+			while((line = bufferedReader.readLine()) != null) {
+				
+				content.append(line + "\n");
+				
+					
+			}
+			
+			bufferedReader.close();
+			
+		}
 		
-		}catch (Exception e) {
+		catch(Exception e)
+		
+		{
 			
-			e.printStackTrace();			
-			
-		}*/
+			e.printStackTrace();
 		
+		}
 		
-		
+		return content.toString();
 	}
 
+
+	
 }

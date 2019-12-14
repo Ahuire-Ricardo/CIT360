@@ -43,46 +43,15 @@ public class InventoryDAO implements InventorDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public List<Inventory> List() throws Exception {
     
-    	    session=HibernateUlits.getSessionFactory().openSession();
-			
-			Inventory inventory = new Inventory();
-			
-			Query query = session.createQuery("FROM Inventory");
-			
-			List inventor = query.list();
-			
-			List<Inventory> invent= new ArrayList<>();
-			
-			for (Iterator iter = inventor.iterator();iter.hasNext();) {
-				Inventory in = (Inventory)iter.next();
-				Integer id=  in.getInvId();
-				String name =  in.getInvName();
-				String description =  in.getInvDescription();
-				String location = in.getInvLocation();
-				BigDecimal price = in.getInvPrice();
-				Short stock = in.getInvStock();
-				Short weight = in.getInvWeight();
-				Short size  = in.getInvSize();
-				
-				Inventory tempInv = new Inventory(id,name,description,location,price,stock,weight,size);
-				invent.add(tempInv);
-			 }
-		  
-		 
-         return invent;
-    	 }
-
-
 	@Override
-	public java.util.List<Inventory> findAll() {
+	public java.util.List<Inventory> findAll(String nameProduct) {
 		// TODO Auto-generated method stub
 		session=HibernateUlits.getSessionFactory().openSession();
 		
 		Inventory inventory = new Inventory();
 		
-		Query query = session.createQuery("FROM Inventory");
+		Query query = session.createQuery("FROM Inventory WHERE invName = '" + nameProduct + "'");
 		
 		List inventor = query.list();
 		

@@ -7,6 +7,6 @@ import com.finalwarehouseproject.entity.Inventory;
 
 public interface InventoryService {
 	
-	 public List<Inventory> getInventory();
+	 public List<Inventory> getInventory(String nameProduct);
 
 }

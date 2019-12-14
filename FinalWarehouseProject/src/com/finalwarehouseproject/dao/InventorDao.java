@@ -6,6 +6,6 @@ import com.finalwarehouseproject.entity.Inventory;
 
 public interface InventorDao {
 	
-	public List<Inventory> findAll();
+	public List<Inventory> findAll(String nameProduct);
 
 }

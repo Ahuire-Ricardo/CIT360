@@ -15,9 +15,9 @@ public class InventService implements InventoryService {
 	}
 
 	@Override
-	public List<Inventory> getInventory() {
+	public List<Inventory> getInventory(String nameProduct) {
 		// TODO Auto-generated method stub
-		return inventoryDao.findAll();
+		return inventoryDao.findAll(nameProduct);
 	}
 
 }
