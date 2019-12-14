@@ -41,7 +41,7 @@ table.imagetable td {
 
 	<%
 	
-	   inventory=(List<Inventory>) request.getAttribute("INVENTORYLIST");
+	List<Inventory> inventory=(List<Inventory>) request.getAttribute("INVENTORYLIST");
 	  
 	
 	%>

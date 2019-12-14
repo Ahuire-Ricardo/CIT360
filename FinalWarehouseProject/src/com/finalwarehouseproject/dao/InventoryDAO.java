@@ -14,7 +14,7 @@ import org.hibernate.Session;
 import com.finalwarehouseproject.database.AccessDB;
 import com.finalwarehouseproject.entity.Inventory;
 
-public class InventoryDAO {
+public class InventoryDAO implements InventorDao {
 	
 	private static Session session;
 	
@@ -73,5 +73,38 @@ public class InventoryDAO {
 		 
          return invent;
     	 }
+
+
+	@Override
+	public java.util.List<Inventory> findAll() {
+		// TODO Auto-generated method stub
+		session=HibernateUlits.getSessionFactory().openSession();
+		
+		Inventory inventory = new Inventory();
+		
+		Query query = session.createQuery("FROM Inventory");
+		
+		List inventor = query.list();
+		
+		List<Inventory> invent= new ArrayList<>();
+		
+		for (Iterator iter = inventor.iterator();iter.hasNext();) {
+			Inventory in = (Inventory)iter.next();
+			Integer id=  in.getInvId();
+			String name =  in.getInvName();
+			String description =  in.getInvDescription();
+			String location = in.getInvLocation();
+			BigDecimal price = in.getInvPrice();
+			Short stock = in.getInvStock();
+			Short weight = in.getInvWeight();
+			Short size  = in.getInvSize();
+			
+			Inventory tempInv = new Inventory(id,name,description,location,price,stock,weight,size);
+			invent.add(tempInv);
+		 }
+	  
+	 
+		return invent;
+	}
 
 }
